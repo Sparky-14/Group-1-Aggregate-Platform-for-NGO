@@ -1,6 +1,8 @@
 <?php
 include 'conn.php';
-
+$name = "";
+$sector = "";
+$address = "";
 $sql = "SELECT * FROM `NGOs`";
 if(isset($_POST['name'])){
   global $sql;
@@ -64,7 +66,15 @@ echo '
           <li><a class="nav-link scrollto" href="about.php">About</a></li>
           <li><a class="nav-link scrollto" href="service.php">Services</a></li>
           <li><a class="nav-link scrollto " href="portfolio.php">Portfolio</a></li>
-          <li><a class="nav-link scrollto " href="login.php">Login</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Login
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="ngologin.php">NGO Login </a></li>
+              <li><a class="dropdown-item" href="login.php">User Login</a></li>
+            </ul>
+           </li>
           <li><a class="nav-link scrollto " href="admin.php">Admin</a></li>
           
         </ul>
@@ -98,7 +108,7 @@ echo '
       <div class="row">
         <div class="col-sm-3">
           <label for="name"> NGO name</label>
-          <input type="text" name="name" class="form-control" id="name" value="'.$name.'">
+          <input type="text" name="name" class="form-control" id="name" value="'.(($name)? $name : '').'">
         </div>
         <div class="col-sm-3">
           <label for="name">Sector</label>
@@ -128,7 +138,6 @@ echo '
             <th>NGO Name</th>
             <th>Sector</th>
             <th>State</th>
-            <th>District</th>
             <th>Website</th>
             <th>Address</th>
           </tr>
@@ -143,7 +152,6 @@ echo '
               <td>".$row["Name"]."</td>
               <td>".$row["Sector"]."</td>
               <td> ".$row["State"]."</td>
-              <td> ".$row["District"]."</td>
               <td> ".$row["Website"]."</td>
               <td>".$row["Address"]."</td>
               </tr>";
@@ -233,4 +241,3 @@ echo '
 
 </html>';
 $conn->close();
-?>
