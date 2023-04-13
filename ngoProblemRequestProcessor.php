@@ -5,7 +5,10 @@ if(isset($_GET['pid'])){
     $pid = $_GET['pid'];
     $nid = $_GET['nid'];
             $query = "INSERT INTO `problemAssigned`(`PID`, `NID`) VALUES ($pid,$nid)";
-            $conn->query($query);
+            if($conn->query($query)== TRUE){
+                $status = "UPDATE `Problems` SET `status`= 'assigned' WHERE pid = $pid";
+                $conn->query($status);
+            }
             
             $sql = "DELETE FROM `NGOsProblemRequest` WHERE PID = $pid AND NID = $nid";
             $conn->query($sql);

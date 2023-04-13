@@ -15,7 +15,7 @@ if(isset($_GET['pid'])){
                 $sector = $row["Sector"];
                 $createdby = $row["CreatedBy"];
                 $createdon = $row["CreatedOn"];
-                $query2 = "INSERT INTO `Problems`(`Title`, `Location`, `Sector`, `Problem`, `Mobile`, `CreatedBy`, `CreatedOn`) VALUES ('$title','$location','$sector','$problem','$mobile','$createdby','$createdon')";
+                $query2 = "INSERT INTO `Problems`(`Title`, `Location`, `Sector`, `Problem`, `Mobile`, `CreatedBy`, `CreatedOn`, `status`) VALUES ('$title','$location','$sector','$problem','$mobile','$createdby','$createdon', 'pending')";
                 $conn->query($query2);
             }
             $sql = "DELETE FROM `UsersProblemApproval` WHERE PID = $pid";

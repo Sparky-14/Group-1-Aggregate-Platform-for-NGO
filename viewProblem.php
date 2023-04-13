@@ -2,7 +2,7 @@
   session_start();
   if($_SESSION["user"]){
   include 'conn.php';
-  $sql = "SELECT * FROM `Problems`";
+  $sql = "SELECT * FROM `Problems` WHERE status = 'pending'";
   echo '
 <!DOCTYPE html>
 <html lang="en">

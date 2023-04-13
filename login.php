@@ -12,7 +12,9 @@ if(isset($_POST['uname'])){
     $sql = "SELECT * FROM `Users` WHERE Username = '$uname' AND Password = '$password'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
         $_SESSION["user"] = $uname;
+        $_SESSION["id"] = $row["UID"];
         header("location:service.php");
     }
 }
@@ -83,7 +85,7 @@ if(isset($_POST['uname'])){
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="#">Forgot Password?</a>
+                                        <a class="small" href="forgotPassword.php">Forgot Password?</a>
                                     </div>
                                     <div class="text-center">
                                         <a class="small" href="register.php">Create an Account!</a>

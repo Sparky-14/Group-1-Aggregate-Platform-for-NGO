@@ -1,9 +1,19 @@
 <?php
 session_start();
-if($_SESSION["user"]){
+include 'conn.php';
 
+if(isset($_POST["wid"])){
+  $wid = $_POST["wid"];
+  $id = $_POST["id"];
+  $sql = "INSERT INTO `NGOsProblemRequest`(`NID`, `PID`) VALUES ($wid, $id)";
+  if ($conn->query($sql) === TRUE) {
+    header("location:service.php");
+  }
+}
+
+if($_SESSION["user"]){
   $pid = $_GET['pid'];
-  include 'conn.php';
+  $id = $_SESSION["id"];
   $sql = "SELECT * FROM Problems WHERE pid = '$pid'";
   $row = $conn->query($sql);
   echo '
@@ -86,7 +96,11 @@ if($_SESSION["user"]){
                     <p>'.$result['Problem'].'</p>
                 </div>
                 <div class="row justify-content-center mt-2">
+                  <form method="post">
+                    <input type="hidden" name="wid" value="'.$pid.'">
+                    <input type="hidden" name="id" value="'.$id.'">
                     <button type="submit" class="col-4 btn-get-started">Request to work</button>
+                    </form>
                     </div>
                     </div>
                 </div>';
