@@ -5,7 +5,7 @@ include 'conn.php';
 if(isset($_POST["wid"])){
   $wid = $_POST["wid"];
   $id = $_POST["id"];
-  $sql = "INSERT INTO `NGOsProblemRequest`(`NID`, `PID`) VALUES ($wid, $id)";
+  $sql = "INSERT INTO `NGOsProblemRequest`(`NID`, `PID`) VALUES ($id, $wid)";
   if ($conn->query($sql) === TRUE) {
     header("location:service.php");
   }
